@@ -17,22 +17,18 @@ class OneDArray {
             return path.split("/");
         });
 
-        let longestPathsList = [];
-        let index = 0;
+        let lastPathsList = [];
         for (let paths of pathsList) {
-            if (paths.length > longestPathsList.length) {
-                longestPathsList = paths;
-            }
-
             const printablePaths = paths.map((path, i) => {
                 let newPath = ` --> ${path}`;
-                if (path === longestPathsList[i] && index !== 0) {
+                if (lastPathsList[i] && path === lastPathsList[i]) {
                     newPath = " ".repeat(newPath.length);
                 }
                 return newPath;
             });
+
             console.log(`${printablePaths.join("")}`);
-            index++;
+            lastPathsList = paths;
         }
     }
 }
